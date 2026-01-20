@@ -1,0 +1,7 @@
+
+{
+  "lib": {
+    "flatModuleFile": "i18n",
+    "entryFile": "public_api.ts"
+  }
+}

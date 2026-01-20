@@ -1,0 +1,13 @@
+// Configuration for IDEs only.
+{
+  "extends": "../../tsconfig.lib.json",
+  "compilerOptions": {
+    "rootDir": "..",
+    "baseUrl": ".",
+    "paths": {
+      "@yelon/connector/*": ["./*"],
+    }
+  },
+  "files": ["public_api.ts"],
+  "include": ["./**/*.ts", "../dev-mode-types.d.ts"]
+}

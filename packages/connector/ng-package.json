@@ -1,0 +1,28 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/@yelon/connector",
+  "deleteDestPath": true,
+  "lib": {
+    "flatModuleFile": "connector",
+    "entryFile": "public_api.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "date-fns",
+    "ng-zorro-antd",
+    "@delon/acl",
+    "@delon/abc",
+    "@delon/form",
+    "@delon/util",
+    "@delon/auth",
+    "@delon/theme",
+    "@delon/mock",
+    "@delon/cache",
+    "@delon/chart",
+    "@delon/form",
+    "@delon/testing",
+    "@delon/util",
+    "@ant-design/icons-angular",
+    "@stomp/rx-stomp",
+    "@stomp/stompjs"
+  ]
+}

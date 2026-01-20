@@ -1,0 +1,99 @@
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+
+import { useLocalStorageHeader } from '@yelon/connector/store';
+import { LayoutNavGroupState, YunzaiNavTopic } from '@yelon/connector/types';
+
+import { _HttpClient, I18nPipe } from '@delon/theme';
+import { WINDOW } from '@delon/util';
+import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+
+@Component({
+  selector: `yunzai-layout-nav-group`,
+  template: `
+    <div class="yz-application-group">
+      <nz-tabs>
+        @for (menu of state.topics; track menu) {
+          <nz-tab [nzTitle]="groupTitleTpl">
+            <ng-template #groupTitleTpl>
+              <a data-event-id="_nav_topic" [attr.data-name]="menu.name | i18n" nz-dropdown [nzDropdownMenu]="menuTpl" [nzTrigger]="'click'" [nzOverlayClassName]="'yz-application-dropdown'">
+                @if (menu.icon) {
+                  <nz-icon [nzType]="menu.icon" nzTheme="outline" />
+                }
+                {{ menu.name | i18n }}
+                @if (menu.children && menu.children.length > 0) {
+                  <nz-icon nzType="down" nzTheme="outline" />
+                }
+              </a>
+              <nz-dropdown-menu #menuTpl="nzDropdownMenu">
+                @if (menu.children && menu.children.length > 0) {
+                  <ul nz-menu nzSelectable>
+                    @for (item of menu.children; track item) {
+                      <ng-container>
+                        @if (item.auth) {
+                          <li data-event-id="_nav_item" [attr.data-name]="item.name | i18n" nz-menu-item (click)="open(item)">
+                            @if (item.icon) {
+                              <nz-icon [nzType]="item.icon" nzTheme="outline" />
+                            }
+                            {{ item.name | i18n }}
+                          </li>
+                        }
+                      </ng-container>
+                    }
+                  </ul>
+                }
+              </nz-dropdown-menu>
+            </ng-template>
+          </nz-tab>
+        }
+      </nz-tabs>
+    </div>
+  `,
+
+  imports: [NzIconModule, NzDropdownModule, I18nPipe, NzTabsModule]
+})
+export class YunzaiLayoutNavGroupComponent implements OnInit, OnDestroy {
+  private readonly http = inject(_HttpClient);
+  private destroy$ = new Subject();
+  private readonly win = inject(WINDOW);
+  state: LayoutNavGroupState = {
+    topics: []
+  };
+
+  ngOnInit(): void {
+    const [, getTopics] = useLocalStorageHeader();
+    this.state.topics = getTopics() || [];
+  }
+
+  open(topic: YunzaiNavTopic): void {
+    if (topic.key) {
+      this.http
+        .post(`/app-manager/web-scan/save`, {
+          appId: topic.key,
+          createDate: new Date()
+        })
+        .pipe(takeUntil(this.destroy$))
+        .subscribe();
+    }
+    switch (topic.target) {
+      case 'href':
+        this.win.location.href = topic.url;
+        break;
+      case 'blank':
+        this.win.open(topic.url);
+        break;
+      case 'target':
+        this.win.open(topic.url);
+        break;
+      default:
+        this.win.location.href = topic.url;
+        break;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.complete();
+  }
+}

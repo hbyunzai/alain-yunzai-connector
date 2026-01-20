@@ -11,17 +11,7 @@ import unusedImports from 'eslint-plugin-unused-imports';
 
 export default defineConfig(
   {
-    ignores: [
-      '.*/',
-      'dist/',
-      'coverage/',
-      'junit/',
-      'ng-alain/',
-      'schematics/**/files/**/*',
-      'src/dist/**/*',
-      'src/templates/**/*',
-      'src/app/routes/gen/**/*'
-    ]
+    ignores: ['.*/', 'dist/', 'coverage/', 'junit/', 'src/dist/**/*']
   },
   {
     files: ['**/*.ts'],
@@ -35,13 +25,13 @@ export default defineConfig(
       jsdoc,
       import: importPlugin,
       prettier,
-      'unused-imports': unusedImports,
+      'unused-imports': unusedImports
     },
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
+      ...angular.configs.tsRecommended
     ],
     processor: angular.processInlineTemplates,
     rules: {
@@ -143,7 +133,7 @@ export default defineConfig(
               position: 'before'
             }
           ],
-          "pathGroupsExcludedImportTypes": []
+          pathGroupsExcludedImportTypes: []
         }
       ],
       'no-bitwise': 'off',
@@ -180,7 +170,7 @@ export default defineConfig(
   {
     files: ['**/*.html'],
     plugins: {
-      prettier,
+      prettier
     },
     extends: [
       ...angular.configs.templateRecommended
@@ -188,9 +178,9 @@ export default defineConfig(
       // ...angular.configs.templateAccessibility,
     ],
     rules: {
-      "prettier/prettier": ["error"],
-      "@angular-eslint/template/eqeqeq": "off",
-      "@angular-eslint/template/prefer-self-closing-tags": "error"
+      'prettier/prettier': ['error'],
+      '@angular-eslint/template/eqeqeq': 'off',
+      '@angular-eslint/template/prefer-self-closing-tags': 'error'
     }
   }
 );

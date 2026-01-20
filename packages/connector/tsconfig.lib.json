@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.lib.prod.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@yelon/connector/*": ["../../dist/@yelon/connector/*"],
+      "@yelon/*": ["../../dist/@yelon/*"]
+    },
+    "types": ["../dev-mode-types"]
+  }
+}

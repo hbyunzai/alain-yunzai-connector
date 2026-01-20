@@ -1,0 +1,7 @@
+
+{
+  "lib": {
+    "flatModuleFile": "socket",
+    "entryFile": "public_api.ts"
+  }
+}

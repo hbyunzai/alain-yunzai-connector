@@ -1,0 +1,20 @@
+{
+  "name": "@yelon/connector",
+  "version": "0.0.0-PLACEHOLDER",
+  "license": "MIT",
+  "dependencies": {
+    "ng-zorro-antd": "@LIB-PLACEHOLDER",
+    "@delon/acl": "@LIB-PLACEHOLDER",
+    "@delon/abc": "@LIB-PLACEHOLDER",
+    "@delon/auth": "@LIB-PLACEHOLDER",
+    "@delon/theme": "@LIB-PLACEHOLDER",
+    "@delon/mock": "@LIB-PLACEHOLDER",
+    "@delon/cache": "@LIB-PLACEHOLDER",
+    "@delon/chart": "@LIB-PLACEHOLDER",
+    "@delon/form": "@LIB-PLACEHOLDER",
+    "@delon/testing": "@LIB-PLACEHOLDER",
+    "@delon/util": "@LIB-PLACEHOLDER",
+    "@stomp/rx-stomp": "@LIB-PLACEHOLDER",
+    "@stomp/stompjs": "@LIB-PLACEHOLDER"
+  }
+}

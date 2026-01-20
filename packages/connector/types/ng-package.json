@@ -1,0 +1,7 @@
+
+{
+  "lib": {
+    "flatModuleFile": "types",
+    "entryFile": "public_api.ts"
+  }
+}
