@@ -1,0 +1,36 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "debug build",
+      "sourceMaps": false,
+      "program": "${workspaceFolder}/scripts/build/packing.js",
+      "args": ["chart"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "site generate",
+      "program": "${workspaceFolder}/scripts/site/generate.ts",
+      "runtimeExecutable": "tsx",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": []
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "schematics test",
+      "program": "${workspaceFolder}/schematics/test.ts",
+      "runtimeExecutable": "tsx",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": []
+    }
+  ]
+}

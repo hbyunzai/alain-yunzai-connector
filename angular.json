@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "cli": {
+    "packageManager": "yarn",
+    "analytics": false
+  },
+  "projects": {
+    "yelon": {
+      "sourceRoot": "packages",
+      "root": "packages",
+      "projectType": "library",
+      "prefix": "",
+      "architect": {
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "fix": true,
+            "lintFilePatterns": [
+              "packages/**/*.ts",
+              "packages/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "inlineStyleLanguage": "less",
+            "main": "packages/test.ts",
+            "karmaConfig": "packages/karma.conf.js",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "packages/tsconfig.spec.json",
+            "scripts": ["node_modules/@antv/g2/dist/g2.min.js", "node_modules/@antv/data-set/dist/data-set.js"],
+            "codeCoverageExclude": ["schematics/**", "packages/testing/**"],
+            "include": [
+              "./test.ts",
+              "**/*.spec.ts"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
