@@ -1,0 +1,49 @@
+import { HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
+
+import { DA_SERVICE_TOKEN, isAnonymous, mergeConfig, SimpleTokenModel, throwErr } from '@delon/auth';
+import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
+
+function newReq(req: HttpRequest<unknown>, model: SimpleTokenModel, options: AlainAuthConfig): HttpRequest<unknown> {
+  const { token_send_template, token_send_key } = options;
+  const token = token_send_template!.replace(/\$\{([\w]+)\}/g, (_: string, g) => model[g]);
+  switch (options.token_send_place) {
+    case 'header':
+      // eslint-disable-next-line no-case-declarations
+      const obj: any = {};
+      obj[token_send_key!] = token;
+      req = req.clone({
+        setHeaders: obj
+      });
+      break;
+    case 'body': {
+      const body: any = req.body ?? {};
+      body[token_send_key!] = token;
+      req = req.clone({
+        body
+      });
+      break;
+    }
+    case 'url':
+      req = req.clone({
+        params: req.params.append(token_send_key!, token)
+      });
+      break;
+  }
+  return req;
+}
+
+export const yunzaiAuthSimpleInterceptor: HttpInterceptorFn = (req, next) => {
+  const options = mergeConfig(inject(AlainConfigService));
+
+  if (isAnonymous(req, options)) return next(req);
+
+  const model = inject(DA_SERVICE_TOKEN).get() as SimpleTokenModel;
+  if (CheckSimple(model)) return next(newReq(req, model, options));
+
+  return throwErr(req, options);
+};
+
+export function CheckSimple(model: SimpleTokenModel | null): boolean {
+  return model != null && typeof model.access_token === 'string' && model.access_token.length > 0;
+}

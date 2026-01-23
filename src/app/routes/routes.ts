@@ -15,8 +15,9 @@ export const routes: Routes = [
     canActivate: [startPageGuard, authSimpleCanActivate],
     canActivateChild: [authSimpleCanActivateChild],
     children: [
+      { path: 'displayIndex', redirectTo: 'index', pathMatch: 'full' },
       {
-        path: '',
+        path: 'index',
         component: RoutesIndexComponent
       }
     ]

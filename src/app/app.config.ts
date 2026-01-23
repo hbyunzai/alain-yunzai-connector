@@ -4,14 +4,14 @@ import { ApplicationConfig, EnvironmentProviders, Provider } from '@angular/core
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withHashLocation, RouterFeatures, withViewTransitions } from '@angular/router';
 
 import { CELL_WIDGETS, SF_WIDGETS, ST_WIDGETS } from '@shared';
-import { provideYunzaiBindAuthRefresh, provideYunzaiStartup, yunzaiDefaultInterceptor } from '@yelon/connector/auth';
+import { provideYunzaiBindAuthRefresh, provideYunzaiStartup, yunzaiAuthSimpleInterceptor, yunzaiDefaultInterceptor } from '@yelon/connector/auth';
 import { provideYunzaiConfig } from '@yelon/connector/config';
 import { YunzaiHttpI18NService } from '@yelon/connector/i18n';
 import { zhCN as dateLang } from 'date-fns/locale';
 
 import { provideCellWidgets } from '@delon/abc/cell';
 import { provideSTWidgets } from '@delon/abc/st';
-import { authSimpleInterceptor, provideAuth } from '@delon/auth';
+import { provideAuth } from '@delon/auth';
 import { provideSFConfig } from '@delon/form';
 import { AlainProvideLang, provideAlain, zh_CN as delonLang } from '@delon/theme';
 import { AlainConfig } from '@delon/util/config';
@@ -65,7 +65,7 @@ const providers: Array<Provider | EnvironmentProviders> = [
   }),
   provideYunzaiStartup(),
   provideYunzaiBindAuthRefresh(),
-  provideHttpClient(withInterceptors([...(environment.interceptorFns ?? []), authSimpleInterceptor, yunzaiDefaultInterceptor])),
+  provideHttpClient(withInterceptors([...(environment.interceptorFns ?? []), yunzaiAuthSimpleInterceptor, yunzaiDefaultInterceptor])),
   provideRouter(routes, ...routerFeatures),
   provideAlain({ config: alainConfig, defaultLang, i18nClass: YunzaiHttpI18NService, icons: [...ICONS_AUTO, ...ICONS] }),
   provideNzConfig(ngZorroConfig),
