@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 
 import { YunzaiLayoutBasicComponent } from '@yelon/connector/layout';
 
-import { authSimpleCanActivate, authSimpleCanActivateChild } from '@delon/auth';
+// import { authSimpleCanActivate, authSimpleCanActivateChild } from '@delon/auth';
 
-import { startPageGuard } from '@core';
+// import { startPageGuard } from '@core';
 
 import { RoutesIndexComponent } from './index.component';
 
@@ -12,8 +12,8 @@ export const routes: Routes = [
   {
     path: '',
     component: YunzaiLayoutBasicComponent,
-    canActivate: [startPageGuard, authSimpleCanActivate],
-    canActivateChild: [authSimpleCanActivateChild],
+    // canActivate: [startPageGuard, authSimpleCanActivate],
+    // canActivateChild: [authSimpleCanActivateChild],
     children: [
       { path: 'displayIndex', redirectTo: 'index', pathMatch: 'full' },
       {
