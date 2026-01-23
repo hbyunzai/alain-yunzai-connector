@@ -1,3 +1,4 @@
+import { HttpContext } from '@angular/common/http';
 import { EnvironmentProviders, inject, Injectable, provideAppInitializer, Provider } from '@angular/core';
 import { catchError, combineLatest, EMPTY, map, mergeMap, Observable, of } from 'rxjs';
 
@@ -140,7 +141,7 @@ export class YunzaiStartupService {
       if (!this.tokenService.get()?.access_token) {
         return this.httpClient
           .post(`/auth/oauth/token?_allow_anonymous=true`, this.config.connector.loginForm, {
-            context: ALLOW_ANONYMOUS
+            context: new HttpContext().set(ALLOW_ANONYMOUS, true)
           })
           .pipe(
             map((response: NzSafeAny) => {
@@ -154,7 +155,7 @@ export class YunzaiStartupService {
       const uri = encodeURIComponent(this.win.location.href);
       return this.httpClient
         .get(`/cas-proxy/app/validate_full?callback=${uri}&_allow_anonymous=true&timestamp=${new Date().getTime()}`, {
-          context: ALLOW_ANONYMOUS
+          context: new HttpContext().set(ALLOW_ANONYMOUS, true)
         })
         .pipe(
           map((response: NzSafeAny) => {

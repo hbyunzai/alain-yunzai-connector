@@ -11,6 +11,7 @@
     "lint:style": "npx stylelint 'packages/**/*.less' 'src/**/*.less'",
     "test": "ng test --no-progress --browsers=ChromeHeadlessCI --code-coverage --no-watch",
     "build": "bash scripts/ci/build.sh",
+    "build:playground":"npm run build && npm run build:alain",
     "sync:deps": "tsx scripts/sync-deps.ts",
     "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "release": "npm run build && npm run changelog",

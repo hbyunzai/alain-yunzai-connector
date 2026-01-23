@@ -4635,7 +4635,7 @@ __metadata:
 
 "@yelon/connector@file:./dist/@yelon/connector::locator=alain-yunzai-connector%40workspace%3A.":
   version: 21.0.2
-  resolution: "@yelon/connector@file:./dist/@yelon/connector#./dist/@yelon/connector::hash=11009e&locator=alain-yunzai-connector%40workspace%3A."
+  resolution: "@yelon/connector@file:./dist/@yelon/connector#./dist/@yelon/connector::hash=d24ca3&locator=alain-yunzai-connector%40workspace%3A."
   dependencies:
     "@delon/abc": "npm:^21.0.2"
     "@delon/acl": "npm:^21.0.2"
@@ -4651,7 +4651,7 @@ __metadata:
     "@stomp/stompjs": "npm:^7.1.1"
     ng-zorro-antd: "npm:^21.0.1"
     tslib: "npm:^2.3.0"
-  checksum: 10c0/5ff4685a1cc7b4fc28277e01c7deb4d1f23a331f83761b5f34d56b0c4afeedbbb5652010dc95fdfb074bb67171e44bcc2c42a0ce2ae36064a41ccd649c2dbfa7
+  checksum: 10c0/13d4c72ed248c20f182ccc9bf6f8c33c8925f3fa66a520b6712f88ff64d04e92451626cf787af30775ef2d4a353c9c5da390e315cf47425414544ffac18306bf
   languageName: node
   linkType: hard
 
