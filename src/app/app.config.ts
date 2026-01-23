@@ -7,6 +7,7 @@ import { CELL_WIDGETS, SF_WIDGETS, ST_WIDGETS } from '@shared';
 import { provideYunzaiBindAuthRefresh, provideYunzaiStartup, yunzaiAuthSimpleInterceptor, yunzaiDefaultInterceptor } from '@yelon/connector/auth';
 import { provideYunzaiConfig } from '@yelon/connector/config';
 import { YunzaiHttpI18NService } from '@yelon/connector/i18n';
+import { ICONS as YELON_ICONS } from '@yelon/connector/layout';
 import { zhCN as dateLang } from 'date-fns/locale';
 
 import { provideCellWidgets } from '@delon/abc/cell';
@@ -67,7 +68,7 @@ const providers: Array<Provider | EnvironmentProviders> = [
   provideYunzaiBindAuthRefresh(),
   provideHttpClient(withInterceptors([...(environment.interceptorFns ?? []), yunzaiAuthSimpleInterceptor, yunzaiDefaultInterceptor])),
   provideRouter(routes, ...routerFeatures),
-  provideAlain({ config: alainConfig, defaultLang, i18nClass: YunzaiHttpI18NService, icons: [...ICONS_AUTO, ...ICONS] }),
+  provideAlain({ config: alainConfig, defaultLang, i18nClass: YunzaiHttpI18NService, icons: [...ICONS_AUTO, ...ICONS, ...YELON_ICONS] }),
   provideNzConfig(ngZorroConfig),
   provideAuth(),
   provideCellWidgets(...CELL_WIDGETS),

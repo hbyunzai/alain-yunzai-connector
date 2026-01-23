@@ -6,13 +6,13 @@ import { RouterModule } from '@angular/router';
 import { mergeYunzaiConfig, YunzaiConfigService } from '@yelon/connector/config';
 import { StompService } from '@yelon/connector/socket';
 import { useLocalStorageCurrent, useLocalStorageDefaultRoute, useLocalStorageHeaderType, useLocalStorageProjectInfo } from '@yelon/connector/store';
+import { ThemeBtnComponent } from '@yelon/connector/theme-btn';
 import { LayoutBasicAside, LayoutBasicDisplay, NavType, YunzaiHeaderStyle, YunzaiProjectInfo } from '@yelon/connector/types';
 import { hasFavicon, setFavicon } from '@yelon/connector/utils';
 
 import { ReuseTabModule } from '@delon/abc/reuse-tab';
 import { I18nPipe } from '@delon/theme';
 import { LayoutDefaultModule, LayoutDefaultOptions } from '@delon/theme/layout-default';
-import { ThemeBtnComponent } from '@delon/theme/theme-btn';
 import { log, WINDOW } from '@delon/util';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';

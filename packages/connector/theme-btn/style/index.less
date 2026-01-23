@@ -1,0 +1,22 @@
+@theme-btn-prefix: ~'.theme-btn';
+
+.widget-theme-btn-mixin(@enabled) when (@enabled=true) {
+  @{theme-btn-prefix} {
+    .ant-avatar {
+      background: none;
+      width: 50px;
+      height: 34px;
+      padding: 5px 2px;
+    }
+  }
+
+  .theme-list {
+    li i {
+      margin-right: 2px;
+    }
+  }
+
+  @import './rtl.less';
+}
+
+.widget-theme-btn-mixin(@theme-btn-enabled);
