@@ -3,6 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { mergeYunzaiConfig, YunzaiConfigService } from '@yelon/connector/config';
+import { StompService } from '@yelon/connector/socket';
+import { useLocalStorageCurrent, useLocalStorageDefaultRoute, useLocalStorageHeaderType, useLocalStorageProjectInfo } from '@yelon/connector/store';
+import { LayoutBasicAside, LayoutBasicDisplay, NavType, YunzaiHeaderStyle, YunzaiProjectInfo } from '@yelon/connector/types';
+import { hasFavicon, setFavicon } from '@yelon/connector/utils';
+
 import { ReuseTabModule } from '@delon/abc/reuse-tab';
 import { I18nPipe } from '@delon/theme';
 import { LayoutDefaultModule, LayoutDefaultOptions } from '@delon/theme/layout-default';
@@ -15,9 +21,6 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
-import { YunzaiHeaderUserComponent } from './yunzai-user.component';
-import { StompService } from '@yelon/connector/socket';
-import { hasFavicon, setFavicon } from '@yelon/connector/utils';
 import { LayoutDisplayService } from './layout-display.service';
 import { YunzaiNavApplicationComponent } from './layout-nav-application.component';
 import { YunzaiLayoutNavGroupComponent } from './layout-nav-group.component';
@@ -26,9 +29,7 @@ import { YunzaiHeaderClearStorageComponent } from './yunzai-clear-storage.compon
 import { YunzaiHeaderFullScreenComponent } from './yunzai-fullscreen.component';
 import { YunzaiHeaderI18nComponent } from './yunzai-i18n.component';
 import { YunzaiHeaderNotifyComponent } from './yunzai-notify.component';
-import { mergeYunzaiConfig, YunzaiConfigService } from '@yelon/connector/config';
-import { useLocalStorageCurrent, useLocalStorageDefaultRoute, useLocalStorageHeaderType, useLocalStorageProjectInfo } from '@yelon/connector/store';
-import { LayoutBasicAside, LayoutBasicDisplay, NavType, YunzaiHeaderStyle, YunzaiProjectInfo } from '@yelon/connector/types';
+import { YunzaiHeaderUserComponent } from './yunzai-user.component';
 
 export interface LayoutBasicState {
   options: LayoutDefaultOptions;
@@ -355,17 +356,17 @@ export class YunzaiLayoutBasicComponent implements OnInit {
       const name = urlArr[1].split('/')[0];
       this.applicationModal.isVisible = true;
       this.applicationModal.loading = true;
-      this.httpClient.get(`/basic/api/app/aboutApp?name=${name}`).subscribe(
-        (response: any) => {
+      this.httpClient.get(`/basic/api/app/aboutApp?name=${name}`).subscribe({
+        next: (response: any) => {
           this.applicationModal.loading = false;
           if (response.data) {
             this.applicationInfo = response.data;
           }
         },
-        () => {
+        error: () => {
           this.applicationModal.loading = false;
         }
-      );
+      });
     }
   }
 }

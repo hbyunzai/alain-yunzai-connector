@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { mergeYunzaiConfig, YunzaiConfig, YunzaiConfigService } from '@yelon/connector/config';
+import { useLocalStorageProjectInfo, useLocalStorageUser } from '@yelon/connector/store';
+
 import { DA_SERVICE_TOKEN } from '@delon/auth';
 import { I18nPipe } from '@delon/theme';
 import { WINDOW } from '@delon/util';
@@ -8,9 +11,6 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
-
-import { mergeYunzaiConfig, YunzaiConfig, YunzaiConfigService } from '@yelon/connector/config';
-import { useLocalStorageProjectInfo, useLocalStorageUser } from '@yelon/connector/store';
 
 export interface UserLink {
   icon: string;

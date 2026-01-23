@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { forkJoin, map, Observable, Subscription } from 'rxjs';
 
+import { YunzaiHttpI18NService } from '@yelon/connector/i18n';
 import { formatDistanceToNow } from 'date-fns';
 
 import { NoticeIconModule, NoticeIconSelect, NoticeItem } from '@delon/abc/notice-icon';
@@ -8,8 +9,6 @@ import { _HttpClient, ALAIN_I18N_TOKEN } from '@delon/theme';
 import { WINDOW } from '@delon/util';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { NzMessageService } from 'ng-zorro-antd/message';
-
-import { YunzaiHttpI18NService } from '@yelon/connector/i18n';
 
 @Component({
   selector: `yunzai-header-notify`,

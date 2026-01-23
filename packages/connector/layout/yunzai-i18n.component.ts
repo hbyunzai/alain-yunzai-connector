@@ -2,11 +2,11 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import { booleanAttribute, ChangeDetectionStrategy, Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
+import { YunzaiHttpI18NService } from '@yelon/connector/i18n';
+
 import { ALAIN_I18N_TOKEN, I18nPipe, SettingsService } from '@delon/theme';
 import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-
-import { YunzaiHttpI18NService } from '@yelon/connector/i18n';
 
 export interface YunzaiI18NType {
   code: string;
