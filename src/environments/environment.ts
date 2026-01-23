@@ -19,7 +19,7 @@ export const environment = {
     // yunzai
     connector: {
       backstage: '/backstage',
-      systemCode: 'analysis',
+      systemCode: 'portal',
       loginForm: form
     },
     socket: {
