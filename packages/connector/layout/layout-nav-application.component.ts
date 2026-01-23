@@ -43,7 +43,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
       </div>
     </ng-template>
 
-    <div data-event-id="_nav_app" id="navBtn" class="yunzai-default__nav-item" (click)="diffChange()">{{ 'mode.nav' | i18n }} </div>
+    <div data-event-id="_nav_app" id="navBtn" class="alain-default__nav-item" (click)="diffChange()">{{ 'mode.nav' | i18n }} </div>
 
     @if (state.active) {
       <div class="yz-application" id="navDropdown" nz-row>

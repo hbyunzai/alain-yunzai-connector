@@ -21,7 +21,7 @@ export interface UserLink {
 @Component({
   selector: `yunzai-header-user`,
   template: `
-    <div class="yunzai-default__nav-item d-flex align-items-center px-sm" data-event-id="_nav_user" nz-dropdown nzPlacement="bottomRight" [nzDropdownMenu]="userMenu">
+    <div class="alain-default__nav-item d-flex align-items-center px-sm" data-event-id="_nav_user" nz-dropdown nzPlacement="bottomRight" [nzDropdownMenu]="userMenu">
       <div class="yz-user-name">
         <nz-avatar [nzSrc]="icon" nzSize="small" class="mr-sm" />
         {{ username }}
